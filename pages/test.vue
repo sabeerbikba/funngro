@@ -61,11 +61,9 @@ onMounted(() => {
 </template> -->
 
 
-<template>
+<!-- <template>
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden">
-        <!-- Slider container -->
         <div class="relative overflow-hidden rounded-lg">
-            <!-- Slides -->
             <div class="flex transition-transform duration-500 ease-in-out"
                 :style="{ transform: `translateX(-${currentSlide * 50}%)` }">
                 <div v-for="(slide, index) in slides" :key="slide.id" class="w-[50%] flex-shrink-0 px-2">
@@ -76,7 +74,6 @@ onMounted(() => {
             </div>
         </div>
 
-        <!-- Navigation buttons -->
         <button @click="previousSlide"
             class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/75 transition-colors"
             aria-label="Previous slide">
@@ -88,7 +85,6 @@ onMounted(() => {
             <ChevronRight class="w-6 h-6" />
         </button>
 
-        <!-- Slide indicators -->
         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
             <button v-for="(_, index) in Math.ceil(slides.length / 2)" :key="index" @click="setCurrentSlide(index)"
                 :class="[
@@ -99,7 +95,7 @@ onMounted(() => {
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const slides = ref([
     {
         id: 1,
@@ -139,7 +135,25 @@ const nextSlide = () => {
             : currentSlide.value + 1;
 };
 
-const setCurrentSlide = (index) => {
+const setCurrentSlide = (index: number) => {
     currentSlide.value = index;
 };
+</script> -->
+
+
+
+<template>
+    <div>
+        <div v-for="(item, index) in items" :key="index" class="item">
+            <!-- Render each item -->
+            <div>{{ item }}</div>
+
+            <!-- Insert a component only in between items -->
+            <div v-if="index < items.length - 1">sss</div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+const items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
 </script>

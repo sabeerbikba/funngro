@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
+    extend: {
+      flex: {
+        none: "none", // This sets flex: none;
+      },
+    },
     screens: {
       xs: "479px",
       //   sm: "640px",
