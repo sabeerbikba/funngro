@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-[#1a2634]">
+    <div class="min-h-screen text-white !bg-[#111e2c]">
         <!-- Top Banner -->
         <div class="bg-emerald-500 py-2 text-center text-white">
             <p>As seen on Shark Tank India ... loved by Teens, loved by parents, loved by companies and now loved by

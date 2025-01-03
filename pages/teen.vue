@@ -532,13 +532,19 @@ const earningSteps = [{
     p: "Complete the project - earn money and get certificate",
 }];
 
-// const earningSteps = [
-//     "Sign Up",
-//     "Complete Profile",
-//     "Find Project",
-//     "Complete Work",
-//     "Get Paid",
-// ];
+const FaqAccordion = [
+    {
+        question: "How can I start earning money?",
+        answerHtml: `Simple 5 step process – <br>(1) download funngro and register for earning, <br>(2) complete your evaluation project, <br>(3) apply to projects of your interest, <br>(4) submit completed projects, <br>(5) Get paid!`,
+    }, {
+        question: "Why should Teens work?",
+        answerHtml: `Start early, get independence, learn while you earn but most importantly get real world experience. Work on projects of your interest and find your real passion before making the final career decision.`,
+    }, {
+        question: "What kind of work can I do?",
+        answerHtml: `At this time we have 12 categories in which Teens can work as listed on our home page. Do let us know if those do not cover your needs.`,
+    }
+];
+
 
 const questions = [
     "How many projects can I do?",
@@ -550,7 +556,7 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
 </script>
 
 <template>
-    <div class="min-h-screen bg-[#1a2634] text-white">
+    <div class="min-h-screen text-white">
         <!-- Hero Section -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="grid md:grid-cols-2 gap-8 items-center">
@@ -670,9 +676,8 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
             </div>
         </UiSectionContainer>
 
-        <UiSectionContainer>
-            <UiSectionHeader heading="We are Trusted by"
-                text="Hundreds of companies and partners working with Funngro to find smart talent" />
+        <UiSectionContainerWithHeader heading="We are Trusted by"
+            text="Hundreds of companies and partners working with Funngro to find smart talent">
             <div class="grid gap-6 grid-rows-auto grid-cols-3 auto-cols-fr max-md:grid-cols-1">
                 <div v-for="(partner, index) in partners" :key="index"
                     :style="{ backgroundImage: `url(${partner.bgImgae})` }"
@@ -687,11 +692,10 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
                     </div>
                 </div>
             </div>
-        </UiSectionContainer>
+        </UiSectionContainerWithHeader>
 
-        <UiSectionContainer>
-            <UiSectionHeader heading="We are Featured in"
-                text="The world is talking about Funngro, check out what everyone is saying" />
+        <UiSectionContainerWithHeader heading="We are Featured in"
+            text="The world is talking about Funngro, check out what everyone is saying">
             <div data-delay="4000" data-animation="slide" :class="cn(
                 'text-left bg-transparent h-auto pb-20 relative overflow-hidden',
                 'text-center clear-both tap-highlight-color-transparent h-[300px] relative'
@@ -805,16 +809,15 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
             <div class="mt-48 max-lg:mt-32 max-md:mt-[4.5rem]">
                 <UiSectionHeader heading="Earning with Funngro"
                     text="Simple steps to earn income by working with real companies on project basis" />
-                <div class="gap-2 justify-between items-start flex relative">
-                    <!-- hidden because of z-index css property  -->
-                    <div class="absolute inset-[2rem_5%_auto_10%] max-md:hidden">
+                <div class="process-wrapper justify-between items-start flex relative">
+                    <div class="absolute top-[49px] z-10 inset-[2rem_5%_auto_10%] max-md:hidden">
                         <svg width="100%" height="100%" viewBox="0 0 937 2" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.5 1H936.5" stroke="#07AB67" stroke-width="2" stroke-dasharray="7 7"></path>
                         </svg>
                     </div>
                     <div
-                        class="absolute inset-[2rem_5%_auto_10%]  md:z-[-2] md:w-[2px] md:h-[92%] md:block md:top-8 md:left-[2.4rem] md:right-0">
+                        class="absolute inline-table left-[38px] inset-[2rem_5%_auto_10%] z-10 md:z-[-2] md:w-[2px] md:h-[92%] md:block md:top-8 md:left-[2.4rem] md:right-0">
                         <svg width="2" height="100%" viewBox="0 0 2 3000" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 3000L1 1.14441e-05" stroke="#07AB67" stroke-width="2" stroke-dasharray="7 7">
@@ -822,8 +825,9 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
                         </svg>
                     </div>
 
-                    <div v-for="(step, index) in earningSteps" :key="index">
-                        <div class="div-block-x text-center flex-col justify-center items-center min-w-[11rem] flex">
+                    <template v-for="(step, index) in earningSteps" :key="index">
+                        <div
+                            class="div-block-x text-center z-20 flex-col justify-center items-center min-w-[11rem] flex">
                             <div v-html="step.svg"
                                 class="w-[6.25rem] h-[6.25rem] max-md:w-[4.8rem] max-md:h-32 max-md:flex-none" />
                             <div>
@@ -832,181 +836,248 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
                             </div>
                         </div>
                         <div v-if="index < earningSteps.length - 1"
-                            class="max-md:mb-9 max-md:ml-8 max-md:rotate-90 flex-none w-[0.8125rem] h-[1.625rem] mt-9">
+                            class="max-md:mb-9 max-md:ml-8 max-md:rotate-90 z-20 flex-none w-[0.8125rem] h-[1.625rem] mt-9">
                             <svg width="100%" height="100%" viewBox="0 0 13 26" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13 13L0 0V26L13 13Z" fill="#07AB67" />
                             </svg>
                         </div>
-                    </div>
+                    </template>
+                </div>
+            </div>
+        </UiSectionContainerWithHeader>
 
-                    <div class="div-block">
-                        <div class="process-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 100 100"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="49" fill="#121E2C" stroke="#07AB67" stroke-width="2"
-                                    stroke-dasharray="6 6"></circle>
-                                <circle cx="50" cy="50" r="40" fill="#07AB67" fill-opacity="0.3"></circle>
-                                <circle cx="50" cy="50" r="35" fill="#07AB67"></circle>
-                                <path
-                                    d="M53.4218 39.1818V61H48.8089V43.5604H48.681L43.6846 46.6925V42.6016L49.0858 39.1818H53.4218Z"
-                                    fill="white"></path>
-                            </svg></div>
-                        <div>
-                            <h3 class="process-heading">Register</h3>
-                            <p class="text-color-grey">Register for Earning on Funngro app, select your area of interest
-                            </p>
+        <UiSectionContainerWithHeader class="bg-[#1f2e40]" heading="Frequently Asked Questions"
+            text="Part of being successful is asking the right questions and listening to the answers">
+
+            <!-- <div class="w-layout-grid faq6_component"> -->
+            <div class="faq6_component flex max-lg:flex-col gap-12">
+                <!-- <div class="fs_accordion-1_component" :style="{ gridArea: 'span 1 / span 1 / span 1 / span 1' }">
+                    <div class="fs_accordion-1_item">
+                        <div aria-expanded="false" tabindex="0" role="button" class="fs_accordion-1_header">
+                            <div class="text-xl">How can I start earning money?</div>
+                            <div class="cursor-pointer">
+                                <div class="faq6_icon w-embed"
+                                    style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(45deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        aria-hidden="true" role="img" class="iconify iconify--heroicons" width="100%"
+                                        height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
+                                        <path fill="currentColor"
+                                            d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div aria-labelledby="accordion-header-1" class="fs_accordion-1_content"
+                            style="width: 100%; display: block;">
+                            <div class="fs_accordion-1_body">
+                                <p class="fs_accordion-1_paragraph">Simple 5 step process – <br>(1) download
+                                    funngro
+                                    and register for earning, <br>(2) complete your evaluation project,
+                                    <br>(3)
+                                    apply to projects of your interest, <br>(4) submit completed projects,
+                                    <br>(5)
+                                    Get paid!
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="process-arrow w-embed"><svg width="100%" height="100%" viewBox="0 0 13 26" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 13L0 0V26L13 13Z" fill="#07AB67"></path>
-                        </svg></div>
-                    <div class="div-block">
-                        <div class="process-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 100 100"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="49" fill="#121E2C" stroke="#07AB67" stroke-width="2"
-                                    stroke-dasharray="6 6"></circle>
-                                <circle cx="50" cy="50" r="40" fill="#07AB67" fill-opacity="0.3"></circle>
-                                <circle cx="50" cy="50" r="35" fill="#07AB67"></circle>
-                                <path
-                                    d="M41.8202 61V57.6761L49.5866 50.4851C50.2471 49.8459 50.801 49.2706 51.2485 48.7592C51.703 48.2479 52.0475 47.7472 52.2819 47.2571C52.5162 46.7599 52.6334 46.2237 52.6334 45.6484C52.6334 45.0092 52.4878 44.4588 52.1966 43.9972C51.9055 43.5284 51.5077 43.1697 51.0035 42.9212C50.4992 42.6655 49.9275 42.5376 49.2883 42.5376C48.6206 42.5376 48.0383 42.6726 47.5411 42.9425C47.0439 43.2124 46.6604 43.5994 46.3905 44.1037C46.1206 44.608 45.9857 45.2081 45.9857 45.9041H41.6072C41.6072 44.4766 41.9303 43.2372 42.5766 42.1861C43.2229 41.1349 44.1285 40.3217 45.2932 39.7464C46.458 39.1712 47.8003 38.8835 49.3202 38.8835C50.8827 38.8835 52.2428 39.1605 53.4005 39.7145C54.5653 40.2614 55.4708 41.0213 56.1171 41.9943C56.7634 42.9673 57.0866 44.0824 57.0866 45.3395C57.0866 46.1634 56.9232 46.9766 56.5965 47.7791C56.2769 48.5817 55.7052 49.473 54.8813 50.4531C54.0574 51.4261 52.8962 52.5945 51.3976 53.9581L48.2123 57.0795V57.2287H57.3742V61H41.8202Z"
-                                    fill="white"></path>
-                            </svg></div>
-                        <div>
-                            <h3 class="process-heading">Complete Profile</h3>
-                            <p class="text-color-grey">Add details about your interests, experience and past work</p>
+                    <div class="fs_accordion-1_item">
+                        <div aria-expanded="false" tabindex="0" role="button" class="fs_accordion-1_header">
+                            <div class="text-xl">Why should Teens work?</div>
+                            <div class="cursor-pointer">
+                                <div class="faq6_icon w-embed"
+                                    style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(45deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        aria-hidden="true" role="img" class="iconify iconify--heroicons" width="100%"
+                                        height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
+                                        <path fill="currentColor"
+                                            d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div aria-labelledby="accordion-header-1" class="fs_accordion-1_content"
+                            style="width: 100%; display: block;">
+                            <div class="fs_accordion-1_body">
+                                <p class="fs_accordion-1_paragraph">Start early, get independence, learn
+                                    while you
+                                    earn but most importantly get real world experience. Work on projects of
+                                    your
+                                    interest and find your real passion before making the final career
+                                    decision.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="process-arrow w-embed"><svg width="100%" height="100%" viewBox="0 0 13 26" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 13L0 0V26L13 13Z" fill="#07AB67"></path>
-                        </svg></div>
-                    <div class="div-block">
-                        <div class="process-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 100 100"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="49" fill="#121E2C" stroke="#07AB67" stroke-width="2"
-                                    stroke-dasharray="6 6"></circle>
-                                <circle cx="50" cy="50" r="40" fill="#07AB67" fill-opacity="0.3"></circle>
-                                <circle cx="50" cy="50" r="35" fill="#07AB67"></circle>
-                                <path
-                                    d="M48.9454 61.2983C47.3545 61.2983 45.9376 61.0249 44.6947 60.478C43.4589 59.924 42.4823 59.1641 41.765 58.1982C41.0548 57.2251 40.689 56.103 40.6677 54.8317H45.3126C45.341 55.3643 45.515 55.8331 45.8346 56.2379C46.1613 56.6357 46.5945 56.9446 47.1343 57.1648C47.6741 57.3849 48.2813 57.495 48.9561 57.495C49.6592 57.495 50.2806 57.3707 50.8204 57.1222C51.3602 56.8736 51.7828 56.5291 52.0882 56.0888C52.3936 55.6484 52.5463 55.1406 52.5463 54.5653C52.5463 53.983 52.3829 53.468 52.0562 53.0206C51.7366 52.5661 51.2749 52.2109 50.6713 51.9553C50.0747 51.6996 49.3644 51.5717 48.5406 51.5717H46.5058V48.1839H48.5406C49.2366 48.1839 49.8509 48.0632 50.3836 47.8217C50.9234 47.5803 51.3424 47.2464 51.6407 46.8203C51.939 46.3871 52.0882 45.8828 52.0882 45.3075C52.0882 44.7607 51.9568 44.2812 51.694 43.8693C51.4383 43.4503 51.0761 43.1236 50.6073 42.8892C50.1457 42.6548 49.6059 42.5376 48.988 42.5376C48.363 42.5376 47.7913 42.6513 47.2728 42.8786C46.7544 43.0987 46.3389 43.4148 46.0264 43.8267C45.7139 44.2386 45.547 44.7216 45.5257 45.2756H41.1045C41.1258 44.0185 41.4845 42.9105 42.1805 41.9517C42.8765 40.9929 43.814 40.2436 44.993 39.7038C46.1791 39.157 47.5178 38.8835 49.0093 38.8835C50.515 38.8835 51.8325 39.157 52.9617 39.7038C54.091 40.2507 54.9681 40.9893 55.5931 41.9197C56.2252 42.843 56.5377 43.88 56.5306 45.0305C56.5377 46.2521 56.1578 47.2713 55.3907 48.0881C54.6308 48.9048 53.64 49.4233 52.4184 49.6435V49.8139C54.0235 50.0199 55.2451 50.5774 56.0832 51.4865C56.9284 52.3885 57.3474 53.5178 57.3403 54.8743C57.3474 56.1172 56.9887 57.2216 56.2643 58.1875C55.547 59.1534 54.5562 59.9134 53.292 60.4673C52.0278 61.0213 50.5789 61.2983 48.9454 61.2983Z"
-                                    fill="white"></path>
-                            </svg></div>
-                        <div>
-                            <h3 class="process-heading">Finish first project</h3>
-                            <p class="text-color-grey">Complete one project to show your skills, get paid</p>
+                    <div class="fs_accordion-1_item">
+                        <div aria-expanded="false" tabindex="0" role="button" class="fs_accordion-1_header">
+                            <div class="text-xl">What kind of work can I do?</div>
+                            <div class="cursor-pointer">
+                                <div class="faq6_icon w-embed"
+                                    style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(45deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        aria-hidden="true" role="img" class="iconify iconify--heroicons" width="100%"
+                                        height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
+                                        <path fill="currentColor"
+                                            d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div aria-labelledby="accordion-header-1" class="fs_accordion-1_content"
+                            style="width: 100%; display: block;">
+                            <div class="fs_accordion-1_body">
+                                <p class="fs_accordion-1_paragraph">At this time we have 12 categories in
+                                    which
+                                    Teens can work as listed on our home page. Do let us know if those do
+                                    not cover
+                                    your needs.<em>‍</em></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="process-arrow w-embed"><svg width="100%" height="100%" viewBox="0 0 13 26" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 13L0 0V26L13 13Z" fill="#07AB67"></path>
-                        </svg></div>
-                    <div class="div-block">
-                        <div class="process-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 100 100"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="49" fill="#121E2C" stroke="#07AB67" stroke-width="2"
-                                    stroke-dasharray="6 6"></circle>
-                                <circle cx="50" cy="50" r="40" fill="#07AB67" fill-opacity="0.3"></circle>
-                                <circle cx="50" cy="50" r="35" fill="#07AB67"></circle>
-                                <path
-                                    d="M40.7722 57.1648V53.532L49.8809 39.1818H53.013V44.2102H51.1593L45.4171 53.2976V53.468H58.361V57.1648H40.7722ZM51.2445 61V56.0568L51.3297 54.4482V39.1818H55.655V61H51.2445Z"
-                                    fill="white"></path>
-                            </svg></div>
-                        <div>
-                            <h3 class="process-heading">Apply to companies</h3>
-                            <p class="text-color-grey">Hundreds of companies waiting for you, start applying</p>
+                </div> -->
+
+                <div class="overflow-hidden lg:basis-2/4 xl:basis-7/12 flex flex-col gap-6" role="tablist"
+                    aria-multiselectable="true">
+
+                    <div v-for="(faq, index) in FaqAccordion" :key="index"
+                        class="accordion-item cursor-pointer bg-[#dacef24d] rounded-b-md">
+                        <input type="checkbox" :id="`accordion-${index + 1}`" aria-expanded="false"
+                            :aria-controls="`content-${index + 1}`" class='hidden'>
+                        <label :for="`accordion-${index + 1}`"
+                            class="rounded-md border border-[#dacef2b3] flex justify-between items-center p-4 cursor-pointer select-none"
+                            role="tab" :id="`label${index + 1}`" tabindex="0">
+                            {{ faq.question }}
+                            <span class="h-8 w-8 transition-transform duration-300 ease-in-out" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" class="iconify iconify--heroicons" width="100%"
+                                    height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
+                                    <path fill="currentColor"
+                                        d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z">
+                                    </path>
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-[max-height,padding] duration-300 ease-in-out px-4 bg-[#364353]"
+                            role="tabpanel" :id="`content-${index + 1}`" :aria-labelledby="`label${index + 1}`">
+                            <p class="my-4" v-html="faq.answerHtml" />
                         </div>
                     </div>
-                    <TeenProcessArow />
-                    <div class="div-block">
-                        <div class="process-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 100 100"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="49" fill="#121E2C" stroke="#07AB67" stroke-width="2"
-                                    stroke-dasharray="6 6"></circle>
-                                <circle cx="50" cy="50" r="40" fill="#07AB67" fill-opacity="0.3"></circle>
-                                <circle cx="50" cy="50" r="35" fill="#07AB67"></circle>
-                                <path
-                                    d="M49.0692 61.2983C47.5636 61.2983 46.2212 61.0213 45.0423 60.4673C43.8704 59.9134 42.94 59.1499 42.2511 58.1768C41.5621 57.2038 41.2035 56.0888 41.1751 54.8317H45.6495C45.6992 55.6768 46.0543 56.3622 46.7148 56.8878C47.3754 57.4134 48.1602 57.6761 49.0692 57.6761C49.7937 57.6761 50.4329 57.5163 50.9869 57.1967C51.5479 56.87 51.9847 56.419 52.2972 55.8438C52.6168 55.2614 52.7766 54.5937 52.7766 53.8409C52.7766 53.0739 52.6133 52.3991 52.2866 51.8168C51.967 51.2344 51.5231 50.7798 50.9549 50.4531C50.3867 50.1264 49.7369 49.9595 49.0053 49.9524C48.3661 49.9524 47.7447 50.0838 47.141 50.3466C46.5444 50.6094 46.0792 50.968 45.7454 51.4226L41.6438 50.6875L42.6772 39.1818H56.0153V42.9531H46.4805L45.9158 48.4183H46.0437C46.4272 47.8786 47.006 47.4311 47.7802 47.076C48.5543 46.7209 49.4208 46.5433 50.3796 46.5433C51.6935 46.5433 52.8654 46.8523 53.8952 47.4702C54.9251 48.0881 55.7383 48.9368 56.3349 50.0163C56.9315 51.0888 57.2262 52.3246 57.2191 53.7237C57.2262 55.1939 56.8853 56.5007 56.1964 57.6442C55.5146 58.7805 54.5593 59.6754 53.3306 60.3288C52.109 60.9751 50.6886 61.2983 49.0692 61.2983Z"
-                                    fill="white"></path>
-                            </svg></div>
-                        <div>
-                            <h3 class="process-heading">Start Earning</h3>
-                            <p class="text-color-grey">Complete the project - earn money and get certificate</p>
+                </div>
+                <div
+                    class="faq6_content lg:basis-2/4 xl:basis-5/12 flex flex-col gap-4 rounded-md border border-[#dacef2b3] bg-[#dacef24d] py-10 px-7">
+                    <div>Have a Question?</div>
+                    <div class="w-full max-w-96">
+                        <h3 class="mt-0">Check out our answers to frequently asked questions</h3>
+                    </div>
+                    <a href="https://www.funngro.com/faq"
+                        class="gap-4 flex  max-w-56 flex-row justify-center items-center rounded-full text-white text-center bg-[#47c480] font-semibold px-6 py-3 no-underline">
+                        <div>View More FAQs</div>
+                        <div class="icon-1x1-small w-embed">
+                            <svg aria-hidden="true" fill="currentColor" role="img" viewBox="0 0 20 21"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Arrow Right</title>
+                                <polygon
+                                    points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9">
+                                </polygon>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </UiSectionContainerWithHeader>
+
+
+        <UiSectionContainer>
+            <div class="flex gap-10">
+                <div class="manage-money-right-wrapper">
+                    <img src="https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro.png"
+                        loading="lazy"
+                        sizes="(max-width: 479px) 100vw, (max-width: 767px) 95vw, (max-width: 991px) 92vw, 46vw"
+                        srcset="https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro-p-500.png 500w, https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro-p-800.png 800w, https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro.png 841w"
+                        alt="Funngro About Illustration" class="image-full-width">
+                </div>
+                <div class="manage-money-left-wrapper">
+                    <div class="margin-bottom margin-regular">
+                        <h2 class="text-color-light-blue">The name says it all. <br>"Its <span
+                                class="text-color-dark-green">Fun</span> to <span
+                                class="text-color-dark-green">Grow</span>”
+                        </h2>
+                    </div>
+                    <div class="margin-bottom margin-regular">
+                        <p class="text-color-grey">Funngro is built by educators, Tech enthusiasts, IIM
+                            alumni,
+                            Finance experts but most importantly by Loving parents. We are thankful to
+                            those
+                            mentors who helped us in early stage of our lives and Funngro is our effort
+                            to give
+                            back to the society. Funngro is a mission to enable Teenagers to become
+                            Financially
+                            empowered and grow up to be responsible citizens.<br><br>Mission - Enable
+                            Smart
+                            Teenagers and Smart Companies to realize their full potentials</p>
+                        <div class="share-links top-padding">
+                            <div>Payal Jain, CEO</div>
+                            <a href="https://www.linkedin.com/in/payal-jain-8780191"
+                                target="_blank" class="social-link w-inline-block">
+                                <div class="share-icon w-embed">
+                                    <svg width="24" height="24" viewBox="0 0 18 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_5702_4912)">
+                                            <path
+                                                d="M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18Z"
+                                                fill="#007AB9"></path>
+                                            <path
+                                                d="M14.3776 9.72431V13.4348H12.2263V9.97298C12.2263 9.10375 11.9157 8.51015 11.1368 8.51015C10.5424 8.51015 10.1893 8.90979 10.0334 9.29675C9.97672 9.43505 9.96212 9.62709 9.96212 9.82105V13.4347H7.8107C7.8107 13.4347 7.83958 7.57145 7.8107 6.96453H9.96228V7.88141C9.95795 7.88863 9.95185 7.89569 9.948 7.90259H9.96228V7.88141C10.2482 7.4415 10.758 6.8126 11.9011 6.8126C13.3165 6.8126 14.3776 7.73734 14.3776 9.72431ZM5.56014 3.8457C4.82423 3.8457 4.34277 4.32877 4.34277 4.96344C4.34277 5.58464 4.81028 6.08167 5.53191 6.08167H5.54586C6.29621 6.08167 6.76275 5.58464 6.76275 4.96344C6.74847 4.32877 6.29621 3.8457 5.56014 3.8457ZM4.47064 13.4348H6.62125V6.96453H4.47064V13.4348Z"
+                                                fill="#F1F2F2"></path>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_5702_4912">
+                                                <rect width="18" height="18" fill="white"></rect>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="hide">LinkedIn</div>
+                            </a>
+                        </div>
+                        <div class="share-links top-padding">
+                            <div>Anik Jain, CGO</div>
+                            <a href="https://www.linkedin.com/in/anik-jain" target="_blank"
+                                class="social-link w-inline-block">
+                                <div class="share-icon w-embed">
+                                    <svg width="24" height="24" viewBox="0 0 18 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_5702_4912)">
+                                            <path
+                                                d="M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18Z"
+                                                fill="#007AB9"></path>
+                                            <path
+                                                d="M14.3776 9.72431V13.4348H12.2263V9.97298C12.2263 9.10375 11.9157 8.51015 11.1368 8.51015C10.5424 8.51015 10.1893 8.90979 10.0334 9.29675C9.97672 9.43505 9.96212 9.62709 9.96212 9.82105V13.4347H7.8107C7.8107 13.4347 7.83958 7.57145 7.8107 6.96453H9.96228V7.88141C9.95795 7.88863 9.95185 7.89569 9.948 7.90259H9.96228V7.88141C10.2482 7.4415 10.758 6.8126 11.9011 6.8126C13.3165 6.8126 14.3776 7.73734 14.3776 9.72431ZM5.56014 3.8457C4.82423 3.8457 4.34277 4.32877 4.34277 4.96344C4.34277 5.58464 4.81028 6.08167 5.53191 6.08167H5.54586C6.29621 6.08167 6.76275 5.58464 6.76275 4.96344C6.74847 4.32877 6.29621 3.8457 5.56014 3.8457ZM4.47064 13.4348H6.62125V6.96453H4.47064V13.4348Z"
+                                                fill="#F1F2F2"></path>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_5702_4912">
+                                                <rect width="18" height="18" fill="white"></rect>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="hide">LinkedIn</div>
+                            </a>
                         </div>
                     </div>
+                    <p class="text-size-medium text-color-dark-green">BE INDEPENDENT BEFORE 18!</p>
                 </div>
             </div>
         </UiSectionContainer>
 
-        <!-- Project Categories -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <h2 class="text-3xl font-bold text-center mb-12">Project Categories</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <div v-for="(category, index) in projectCategories" :key="index"
-                    class="bg-gray-800/50 rounded-lg p-4 text-center hover:bg-gray-700/50 transition-colors">
-                    <div class="w-10 h-10 bg-emerald-500/20 rounded-lg mx-auto mb-3 flex items-center justify-center">
-                        <Download class="w-5 h-5 text-emerald-500" />
-                    </div>
-                    <div class="text-sm">{{ category }}</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Trusted By Section -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <h2 class="text-3xl font-bold text-center mb-12">We are Trusted by</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                <div v-for="(type, index) in trustCategories" :key="index" class="bg-gray-800/50 rounded-lg p-8">
-                    <div class="grid grid-cols-2 gap-8">
-                        <div v-for="logo in 4" :key="logo" class="aspect-square bg-gray-700/50 rounded-lg"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Earning Steps -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <h2 class="text-3xl font-bold text-center mb-12">Earning with Funngro</h2>
-            <div class="grid md:grid-cols-5 gap-4">
-                <div v-for="(step, index) in earningSteps" :key="index" class="relative">
-                    <div class="bg-emerald-500/20 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <span class="text-emerald-500 font-bold">{{ index + 1 }}</span>
-                    </div>
-                    <div class="text-center">{{ step }}</div>
-                    <ArrowRight v-if="index < earningSteps.length - 1"
-                        class="absolute top-6 -right-2 text-emerald-500 hidden md:block" />
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ Section -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h2 class="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
-                    <div class="space-y-4">
-                        <div v-for="(question, index) in questions" :key="index" class="bg-gray-800/50 rounded-lg p-4">
-                            <button class="flex justify-between items-center w-full">
-                                <span>{{ question }}</span>
-                                <ChevronDown class="w-5 h-5" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-emerald-500/20 rounded-lg p-8 flex flex-col items-center justify-center">
-                    <h3 class="text-xl font-bold mb-4">
-                        Check out our answers to frequently asked questions
-                    </h3>
-                    <button
-                        class="bg-emerald-500 text-white px-6 py-2 rounded-full hover:bg-emerald-600 transition-colors">
-                        Support →
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <!-- Happy Members -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <h2 class="text-3xl font-bold text-center mb-12">
                 Happy Funngro Members
             </h2>
@@ -1027,12 +1098,12 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
             </div>
         </div>
 
-        <!-- Fun Blogs -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        Fun Blogs -->
+        <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <h2 class="text-3xl font-bold text-center mb-12">Fun Blogs</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- {[1, 2, 3].map((blog) => ( -->
-                <div v-for="n in 3" :key="n" class="bg-gray-800/50 rounded-lg overflow-hidden">
+            <div class="grid md:grid-cols-3 gap-8"> -->
+        <!-- {[1, 2, 3].map((blog) => ( -->
+        <!-- <div v-for="n in 3" :key="n" class="bg-gray-800/50 rounded-lg overflow-hidden">
                     <div class="aspect-video bg-gray-700"></div>
                     <div class="p-6">
                         <h3 class="font-semibold mb-2">Blog Title Goes Here</h3>
@@ -1043,10 +1114,10 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
                             Read More →
                         </NuxtLink>
                     </div>
-                </div>
-                <!-- ))} -->
-            </div>
-        </div>
+                </div> -->
+        <!-- ))} -->
+        <!-- </div> -->
+        <!-- </div> -->
 
         <!-- Footer -->
         <footer class="border-t border-gray-800 py-12">
@@ -1183,6 +1254,7 @@ img {
     width: 100%;
 }
 
+/* is this really needed */
 #w-node-f603c351-8264-42b8-a989-7905ca351b64-fc8fa6c5,
 #w-node-_63f76d8f-1d42-5d6c-af75-e24ed23980de-fc8fa6c5,
 #w-node-_335c455b-d158-0204-5e0b-f014aa24bc90-fc8fa6c5,
@@ -1322,5 +1394,29 @@ img {
         text-align: left;
         flex-direction: row;
     }
+}
+
+@media screen and (max-width: 767px) {
+    .process-wrapper {
+        flex-direction: column;
+        overflow: hidden;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .process-wrapper {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+}
+
+input[type="checkbox"]:checked~.accordion-content {
+    max-height: 200px;
+    padding: 15px;
+}
+
+
+input[type="checkbox"]:checked+label .arrow {
+    transform: rotate(90deg);
 }
 </style>

@@ -142,13 +142,11 @@ const setCurrentSlide = (index: number) => {
 
 
 
-<template>
+<!-- <template>
     <div>
         <div v-for="(item, index) in items" :key="index" class="item">
-            <!-- Render each item -->
             <div>{{ item }}</div>
 
-            <!-- Insert a component only in between items -->
             <div v-if="index < items.length - 1">sss</div>
         </div>
     </div>
@@ -156,4 +154,57 @@ const setCurrentSlide = (index: number) => {
 
 <script setup>
 const items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
+</script> -->
+
+
+<template>
+    <div>
+        <div v-for="(item, index) in accordionItems" :key="index" class="fs_accordion-1_item">
+            <div :aria-expanded="item.expanded" tabindex="0" role="button" class="fs_accordion-1_header">
+                <div class="text-xl">{{ item.title }}</div>
+                <div class="cursor-pointer">
+                    <div class="faq6_icon w-embed" :style="item.iconStyle">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            aria-hidden="true" role="img" class="iconify iconify--heroicons" width="100%" height="100%"
+                            preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
+                            <path fill="currentColor"
+                                d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div :aria-labelledby="`accordion-header-${index}`" class="fs_accordion-1_content"
+                style="width: 100%; display: block;">
+                <div class="fs_accordion-1_body">
+                    <p class="fs_accordion-1_paragraph">{{ item.content }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const accordionItems = ref([
+    {
+        title: "How can I start earning money?",
+        content: "Simple 5 step process – (1) download funngro and register for earning, (2) complete your evaluation project, (3) apply to projects of your interest, (4) submit completed projects, (5) Get paid!",
+        expanded: false,
+        iconStyle: "transform: rotateZ(45deg);"
+    },
+    {
+        title: "Why should Teens work?",
+        content: "Start early, get independence, learn while you earn but most importantly get real-world experience. Work on projects of your interest and find your real passion before making the final career decision.",
+        expanded: false,
+        iconStyle: "transform: rotateZ(45deg);"
+    },
+    {
+        title: "What kind of work can I do?",
+        content: "At this time we have 12 categories in which Teens can work as listed on our home page. Do let us know if those do not cover your needs.",
+        expanded: false,
+        iconStyle: "transform: rotateZ(45deg);"
+    }
+]);
 </script>
