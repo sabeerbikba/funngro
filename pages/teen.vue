@@ -1,6 +1,8 @@
 <script setup lang="ts">
 type ScrollDir = "left" | "right";
 
+const siteBaseUrl: string = 'https://www.funngro.com';
+
 const sliderRef = ref<HTMLDivElement | null>(null);
 const scrollPosition = ref(0);
 const logoWidth = 120;
@@ -8,6 +10,40 @@ const gap = 16;
 const visibleWidth = computed(() => slides.length * (logoWidth + gap));
 const repeatedLogos = computed(() => [...slides, ...slides]);
 const currentSharkTankImg: Ref<number> = ref(0);
+const currentSlideFunngroMembers = ref(0);
+let autoScrollInterval4FunngroMembers: ReturnType<typeof setInterval>;
+
+const funngroMemberPreviousSlide = () => {
+    currentSlideFunngroMembers.value =
+        currentSlideFunngroMembers.value === 0
+            ? Math.ceil(funngroMembers.value.length / 2) - 1
+            : currentSlideFunngroMembers.value - 1;
+};
+
+const funngroMemberNextSlide = () => {
+    currentSlideFunngroMembers.value =
+        currentSlideFunngroMembers.value === Math.ceil(funngroMembers.value.length / 2) - 1
+            ? 0
+            : currentSlideFunngroMembers.value + 1;
+};
+
+const funngroMembersstartAutoScroll = () => {
+    autoScrollInterval4FunngroMembers = setInterval(() => {
+        nextSlide();
+    }, 3000); // Change slide every 3 seconds
+};
+
+const funngroMembersstopAutoScroll = () => {
+    clearInterval(autoScrollInterval4FunngroMembers);
+};
+
+onMounted(() => {
+    funngroMembersstartAutoScroll();
+});
+
+onUnmounted(() => {
+    funngroMembersstopAutoScroll();
+});
 
 const scroll = (direction: ScrollDir) => {
     const scrollAmount =
@@ -28,22 +64,6 @@ onMounted(() => {
         sliderRef.value.style.transform = `translateX(${scrollPosition.value}px)`;
     }
 });
-
-// const previousSlide = () => {
-//     // if (currentSharkTankImg.value) {
-//     currentSharkTankImg.value =
-//         currentSharkTankImg.value === 0
-//             ? Math.ceil(sharkTankGalleryImages.value.length / 2) - 1
-//             : currentSharkTankImg.value - 1;
-//     // }
-// };
-
-// const nextSlide = () => {
-//     currentSharkTankImg.value =
-//         currentSharkTankImg.value === Math.ceil(sharkTankGalleryImages.value.length / 2) - 1
-//             ? 0
-//             : currentSharkTankImg.value + 1;
-// };
 
 const previousSlide = () => {
     currentSharkTankImg.value =
@@ -545,14 +565,48 @@ const FaqAccordion = [
     }
 ];
 
+const funngroMembers = ref([
+    {
+        name: "Aanya Anand",
+        img: "https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/63a02c38d532a827f92564c4_Aanya%20Anand.png",
+        nich: "Social Media marketing",
+        pHtml: `Experience has helped me gain a lot of confidence. Best part is learning &amp; Earning together<br aria-hidden="true">‍`,
+    }, {
+        name: "Shaurya Chatterjee",
+        img: "https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/63a02cb96cc401457e606f65_Shaurya%20Chatterjee.png",
+        nich: "Content Writing",
+        pHtml: `Proud earning money via the projects. It's a huge motivation<br aria-hidden="true"><br aria-hidden="true">`,
+    }, {
+        name: "Apoorva Tyagi",
+        img: "https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/63a02d4ed532a8800c256e5e_Apoorva%20yagi.png",
+        nich: "Social Media Marketing",
+        pHtml: `Funngro is a powerful platform for all the teenagers out there to earn by applying their skills and new ideas. Happy to work with companies.`,
+    }, {
+        name: "Praanjal Agarwal",
+        img: "https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/63a02db8041f5f5477b12118_Praanjal%20Agarwal.png",
+        nich: "Social Media marketing, Content writing",
+        pHtml: `Helped me to earn through my skills. Happy to work with companies.<br><br>‍`,
+    },
+]);
 
-const questions = [
-    "How many projects can I do?",
-    "Who should work here?",
-    "What value will I get?",
+const blogs = [
+    {
+        link: "unleashing-freelancing-success-with-funngro-essential-qualities-and-powerful-tools",
+        imgSrc: "https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/648318c96ee4b710d6a2d8fe_Untitled%20design%20(2).png",
+        imgSrcset: "https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/648318c96ee4b710d6a2d8fe_Untitled%20design%20(2)-p-500.png 500w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/648318c96ee4b710d6a2d8fe_Untitled%20design%20(2)-p-800.png 800w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/648318c96ee4b710d6a2d8fe_Untitled%20design%20(2)-p-1080.png 1080w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/648318c96ee4b710d6a2d8fe_Untitled%20design%20(2)-p-1600.png 1600w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/648318c96ee4b710d6a2d8fe_Untitled%20design%20(2)-p-2000.png 2000w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/648318c96ee4b710d6a2d8fe_Untitled%20design%20(2).png 2245w",
+        altAndh2: "Unleashing Freelancing Success with Funngro: Essential Qualities and Powerful Tools",
+    }, {
+        link: "the-importance-of-early-work-experience-for-teens",
+        imgSrc: "https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/647dacaa70e4e618fa531286_Untitled%20design%20(1).png",
+        imgSrcset: "https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/647dacaa70e4e618fa531286_Untitled%20design%20(1)-p-500.png 500w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/647dacaa70e4e618fa531286_Untitled%20design%20(1)-p-800.png 800w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/647dacaa70e4e618fa531286_Untitled%20design%20(1)-p-1080.png 1080w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/647dacaa70e4e618fa531286_Untitled%20design%20(1).png 1403w",
+        altAndh2: "The Importance of Early Work Experience for Teens",
+    }, {
+        link: "why-should-your-kids-watch-shark-tank-india",
+        imgSrc: "https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/6399d319c27c3dd3a389febf_Why%20should%20your%20kids%20watch%20Shark%20Tank%20India%3F.png",
+        imgSrcset: "https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/6399d319c27c3dd3a389febf_Why%20should%20your%20kids%20watch%20Shark%20Tank%20India%3F-p-500.png 500w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/6399d319c27c3dd3a389febf_Why%20should%20your%20kids%20watch%20Shark%20Tank%20India%3F-p-800.png 800w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/6399d319c27c3dd3a389febf_Why%20should%20your%20kids%20watch%20Shark%20Tank%20India%3F-p-1080.png 1080w, https://cdn.prod.website-files.com/63902f19aa174ec491ff894d/6399d319c27c3dd3a389febf_Why%20should%20your%20kids%20watch%20Shark%20Tank%20India%3F.png 1482w",
+        altAndh2: "Why teens should watch Shark Tank India?",
+    },
 ];
-
-const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
 </script>
 
 <template>
@@ -968,7 +1022,7 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
                     </div>
                 </div>
                 <div
-                    class="faq6_content lg:basis-2/4 xl:basis-5/12 flex flex-col gap-4 rounded-md border border-[#dacef2b3] bg-[#dacef24d] py-10 px-7">
+                    class="faq6_content max-h-60 lg:basis-2/4 xl:basis-5/12 flex flex-col gap-4 rounded-md border border-[#dacef2b3] bg-[#dacef24d] py-10 px-7">
                     <div>Have a Question?</div>
                     <div class="w-full max-w-96">
                         <h3 class="mt-0">Check out our answers to frequently asked questions</h3>
@@ -992,160 +1046,191 @@ const socialMedia = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
 
 
         <UiSectionContainer>
-            <div class="flex gap-10">
-                <div class="manage-money-right-wrapper">
+            <div class="flex max-lg:flex-col gap-10">
+                <div class="basis-1/2">
                     <img src="https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro.png"
                         loading="lazy"
                         sizes="(max-width: 479px) 100vw, (max-width: 767px) 95vw, (max-width: 991px) 92vw, 46vw"
                         srcset="https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro-p-500.png 500w, https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro-p-800.png 800w, https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro.png 841w"
                         alt="Funngro About Illustration" class="image-full-width">
                 </div>
-                <div class="manage-money-left-wrapper">
-                    <div class="margin-bottom margin-regular">
-                        <h2 class="text-color-light-blue">The name says it all. <br>"Its <span
-                                class="text-color-dark-green">Fun</span> to <span
-                                class="text-color-dark-green">Grow</span>”
-                        </h2>
-                    </div>
-                    <div class="margin-bottom margin-regular">
-                        <p class="text-color-grey">Funngro is built by educators, Tech enthusiasts, IIM
-                            alumni,
-                            Finance experts but most importantly by Loving parents. We are thankful to
-                            those
-                            mentors who helped us in early stage of our lives and Funngro is our effort
-                            to give
-                            back to the society. Funngro is a mission to enable Teenagers to become
-                            Financially
-                            empowered and grow up to be responsible citizens.<br><br>Mission - Enable
-                            Smart
-                            Teenagers and Smart Companies to realize their full potentials</p>
-                        <div class="share-links top-padding">
-                            <div>Payal Jain, CEO</div>
-                            <a href="https://www.linkedin.com/in/payal-jain-8780191"
-                                target="_blank" class="social-link w-inline-block">
-                                <div class="share-icon w-embed">
-                                    <svg width="24" height="24" viewBox="0 0 18 18" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_5702_4912)">
-                                            <path
-                                                d="M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18Z"
-                                                fill="#007AB9"></path>
-                                            <path
-                                                d="M14.3776 9.72431V13.4348H12.2263V9.97298C12.2263 9.10375 11.9157 8.51015 11.1368 8.51015C10.5424 8.51015 10.1893 8.90979 10.0334 9.29675C9.97672 9.43505 9.96212 9.62709 9.96212 9.82105V13.4347H7.8107C7.8107 13.4347 7.83958 7.57145 7.8107 6.96453H9.96228V7.88141C9.95795 7.88863 9.95185 7.89569 9.948 7.90259H9.96228V7.88141C10.2482 7.4415 10.758 6.8126 11.9011 6.8126C13.3165 6.8126 14.3776 7.73734 14.3776 9.72431ZM5.56014 3.8457C4.82423 3.8457 4.34277 4.32877 4.34277 4.96344C4.34277 5.58464 4.81028 6.08167 5.53191 6.08167H5.54586C6.29621 6.08167 6.76275 5.58464 6.76275 4.96344C6.74847 4.32877 6.29621 3.8457 5.56014 3.8457ZM4.47064 13.4348H6.62125V6.96453H4.47064V13.4348Z"
-                                                fill="#F1F2F2"></path>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_5702_4912">
-                                                <rect width="18" height="18" fill="white"></rect>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div class="hide">LinkedIn</div>
-                            </a>
+                <div class="basis-1/2 flex justify-center items-center">
+                    <div class="my-auto">
+                        <div class="mb-6">
+                            <h2 class="text-[#d8e0e9]">The name says it all. <br>"Its <span
+                                    class="text-[#07ab67]">Fun</span> to
+                                <span class="text-[#07ab67]">Grow</span>”
+                            </h2>
                         </div>
-                        <div class="share-links top-padding">
-                            <div>Anik Jain, CGO</div>
-                            <a href="https://www.linkedin.com/in/anik-jain" target="_blank"
-                                class="social-link w-inline-block">
-                                <div class="share-icon w-embed">
-                                    <svg width="24" height="24" viewBox="0 0 18 18" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_5702_4912)">
-                                            <path
-                                                d="M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18Z"
-                                                fill="#007AB9"></path>
-                                            <path
-                                                d="M14.3776 9.72431V13.4348H12.2263V9.97298C12.2263 9.10375 11.9157 8.51015 11.1368 8.51015C10.5424 8.51015 10.1893 8.90979 10.0334 9.29675C9.97672 9.43505 9.96212 9.62709 9.96212 9.82105V13.4347H7.8107C7.8107 13.4347 7.83958 7.57145 7.8107 6.96453H9.96228V7.88141C9.95795 7.88863 9.95185 7.89569 9.948 7.90259H9.96228V7.88141C10.2482 7.4415 10.758 6.8126 11.9011 6.8126C13.3165 6.8126 14.3776 7.73734 14.3776 9.72431ZM5.56014 3.8457C4.82423 3.8457 4.34277 4.32877 4.34277 4.96344C4.34277 5.58464 4.81028 6.08167 5.53191 6.08167H5.54586C6.29621 6.08167 6.76275 5.58464 6.76275 4.96344C6.74847 4.32877 6.29621 3.8457 5.56014 3.8457ZM4.47064 13.4348H6.62125V6.96453H4.47064V13.4348Z"
-                                                fill="#F1F2F2"></path>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_5702_4912">
-                                                <rect width="18" height="18" fill="white"></rect>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div class="hide">LinkedIn</div>
-                            </a>
+                        <div class="mb-6">
+                            <p class="text-[#dfdfdf] text-left">Funngro is built by educators, Tech enthusiasts, IIM
+                                alumni,
+                                Finance experts but most importantly by Loving parents. We are thankful to
+                                those
+                                mentors who helped us in early stage of our lives and Funngro is our effort
+                                to give
+                                back to the society. Funngro is a mission to enable Teenagers to become
+                                Financially
+                                empowered and grow up to be responsible citizens.<br><br>Mission - Enable
+                                Smart
+                                Teenagers and Smart Companies to realize their full potentials</p>
+                            <div v-for="(user, index) in [{
+                                name: 'Payal Jain, CEO',
+                                id: 'https://www.linkedin.com/in/payal-jain-8780191',
+                            }, {
+                                name: 'Anik Jain, CGO',
+                                id: 'https://www.linkedin.com/in/anik-jain',
+                            }]" :key="index" class="mt-5 flex gap-4 items-center">
+                                <div class="font-semibold">{{ user.name }}</div>
+                                <a :href="user.id" target="_blank" class="inline-block max-w-full text-inherit font">
+                                    <div class="-mb-1">
+                                        <svg width="24" height="24" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_5702_4912)">
+                                                <path
+                                                    d="M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18Z"
+                                                    fill="#007AB9"></path>
+                                                <path
+                                                    d="M14.3776 9.72431V13.4348H12.2263V9.97298C12.2263 9.10375 11.9157 8.51015 11.1368 8.51015C10.5424 8.51015 10.1893 8.90979 10.0334 9.29675C9.97672 9.43505 9.96212 9.62709 9.96212 9.82105V13.4347H7.8107C7.8107 13.4347 7.83958 7.57145 7.8107 6.96453H9.96228V7.88141C9.95795 7.88863 9.95185 7.89569 9.948 7.90259H9.96228V7.88141C10.2482 7.4415 10.758 6.8126 11.9011 6.8126C13.3165 6.8126 14.3776 7.73734 14.3776 9.72431ZM5.56014 3.8457C4.82423 3.8457 4.34277 4.32877 4.34277 4.96344C4.34277 5.58464 4.81028 6.08167 5.53191 6.08167H5.54586C6.29621 6.08167 6.76275 5.58464 6.76275 4.96344C6.74847 4.32877 6.29621 3.8457 5.56014 3.8457ZM4.47064 13.4348H6.62125V6.96453H4.47064V13.4348Z"
+                                                    fill="#F1F2F2"></path>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_5702_4912">
+                                                    <rect width="18" height="18" fill="white"></rect>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                    <div class="hidden">LinkedIn</div>
+                                </a>
+                            </div>
                         </div>
+                        <p class="text-xl text-[#07ab67]">BE INDEPENDENT BEFORE 18!</p>
                     </div>
-                    <p class="text-size-medium text-color-dark-green">BE INDEPENDENT BEFORE 18!</p>
                 </div>
             </div>
         </UiSectionContainer>
 
 
-        <!-- Happy Members -->
-        <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <h2 class="text-3xl font-bold text-center mb-12">
-                Happy Funngro Members
-            </h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div v-for="n in 2" key="{testimonial}" class="bg-gray-800/50 rounded-lg p-6">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gray-700 rounded-full"></div>
-                        <div>
-                            <div class="font-semibold">Member Name</div>
-                            <div class="text-gray-400">Role</div>
+        <UiSectionContainer class="bg-[#1f2e40]">
+            <div class="flex">
+                <UiSectionHeader class="w-[20%]" heading="Happy Funngro Members"
+                    text="Thousands of your friends are on Funngro and their lives are changing for better. Read on for real stories" />
+                <div data-delay="3000" data-animation="slide"
+                    class="w-[80%] h-auto pb-20 overflow-hidden text-center clear-both relative testimonial-slider w-slider flex "
+                    data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false"
+                    data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true" role="region"
+                    aria-label="carousel">
+                    <div v-for="(profile, index) in funngroMembers"
+                        class="max-lg:w-[60%] w-1/3 overflow-visible z-[1] whitespace-nowrap h-full relative left-0 right-0 min-h-[340px] transition-transform duration-500 ease-in-out"
+                        id="w-slider-mask-2" :style="{ transform: `translateX(-${currentSlideFunngroMembers * 50}%)` }">
+                        <div class="w-full max-w-80 min-w-60 pr-3 align-top whitespace-normal text-left h-full inline-block relative"
+                            :aria-label="`${index + 1} of ${funngroMembers.length}`" role="group" aria-hidden="true">
+                            <div class="bg-[#121e2c] h-full border border-[#dcf8db] rounded-[15px] flex flex-col justify-start min-h-[17.1875rem] p-6 py-6 px-4.5"
+                                aria-hidden="true">
+                                <div class="flex gap-4 items-start mb-5" aria-hidden="true">
+                                    <img :src="profile.img" loading="lazy" alt="" class="max-w-24 inline-block"
+                                        aria-hidden="true">
+                                    <div class="flex flex-col gap-[.4rem] items-start" aria-hidden="true">
+                                        <p class="text-[#07ab67] font-semibold" aria-hidden="true">
+                                            {{ profile.name }}
+                                        </p>
+                                        <p class="text-sm" aria-hidden="true">{{ profile.nich }}</p>
+                                    </div>
+                                </div>
+                                <p v-html="profile.pHtml" class="text-[#dfdfdf] text-left" />
+                            </div>
                         </div>
                     </div>
-                    <p class="text-gray-400">
-                        "Testimonial text goes here. This is a great platform for teens to
-                        learn and earn!"
-                    </p>
+                    <div v-for="(arrow, index) in [{
+                        class: 'top-[23rem] -left-16',
+                        label: 'previous slide',
+                        imgSrc: 'https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/6390183d71afe76c7e7bc767_Vector%2058.svg',
+                        alt: 'Arrow Left',
+                        click: funngroMemberPreviousSlide,
+                    }, {
+                        class: 'top-[23.5rem] -right-16',
+                        label: 'next slide',
+                        imgSrc: 'https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/6390183d1279b312ac061558_Vector%2057.svg',
+                        alt: 'Arrow Right',
+                        click: funngroMemberNextSlide,
+                    }]" :class="[arrow.class, 'cursor-pointer text-white touch-none select-none w-[80px] m-auto text-[40px] absolute inset-0 overflow-hidden']"
+                        :key="index" role="button" tabindex="0" aria-controls="w-slider-mask-2"
+                        :aria-label="arrow.label" @click="arrow.click()">
+                        <img :src="arrow.imgSrc" loading="lazy" :alt="arrow.alt">
+                    </div>
                 </div>
             </div>
-        </div>
+        </UiSectionContainer>
 
-        Fun Blogs -->
-        <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <h2 class="text-3xl font-bold text-center mb-12">Fun Blogs</h2>
-            <div class="grid md:grid-cols-3 gap-8"> -->
-        <!-- {[1, 2, 3].map((blog) => ( -->
-        <!-- <div v-for="n in 3" :key="n" class="bg-gray-800/50 rounded-lg overflow-hidden">
-                    <div class="aspect-video bg-gray-700"></div>
-                    <div class="p-6">
-                        <h3 class="font-semibold mb-2">Blog Title Goes Here</h3>
-                        <p class="text-gray-400 text-sm mb-4">
-                            Short description of the blog post content...
-                        </p>
-                        <NuxtLink to="#" class="text-emerald-500 hover:text-emerald-400">
-                            Read More →
-                        </NuxtLink>
-                    </div>
-                </div> -->
-        <!-- ))} -->
-        <!-- </div> -->
-        <!-- </div> -->
 
-        <!-- Footer -->
-        <footer class="border-t border-gray-800 py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col items-center gap-8">
-                    <img src="/placeholder.png" alt="Funngro Logo" width="{120}" height="{40}" class="h-8 w-auto" />
-                    <div class="flex gap-4">
-                        <NuxtLink to="#" class="text-gray-400 hover:text-white">
-                            <img src="/placeholder.png" alt="Play Store" width="{120}" height="{40}" />
-                        </NuxtLink>
-                        <NuxtLink to="#" class="text-gray-400 hover:text-white">
-                            <img src="/placeholder.png" alt="App Store" width="{120}" height="{40}" />
-                        </NuxtLink>
+        <UiSectionContainer>
+            <div class="flex">
+                <UiSectionHeader class="w-[20%] -top" heading="Fun blogs"
+                    text="An investment in knowledge pays the best interest, read on." />
+                <div class="w-dyn-list w-[70%]">
+                    <div role="list" class="fr ">
+                        <div v-for="(blog, index) in blogs" :key="index" role="listitem">
+                            <a :href="`${siteBaseUrl}}/blog/${blog.link}`"
+                                class="w-full relative max-w-full inline-block text-inherit">
+                                <img :alt="blog.altAndh2" loading="lazy" :src="blog.imgSrc"
+                                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 67vw, (max-width: 991px) 32vw, 24vw"
+                                    :srcset="blog.imgSrcset" class="rounded-lg max-w-full inline-block align-middle">
+                                <div
+                                    class="bg-[#1f2e40] rounded-lg flex-col items-start w-[95%] py-[.875rem] px-5 flex relative -top-6 left-6">
+                                    <h2 class=" mb-[.625rem] text-xl font-semibold">{{ blog.altAndh2 }}
+                                    </h2>
+                                    <div
+                                        class="flex gap-4 text-[#07ab67] bg-[#0000] justify-center items-center p-0 text-center font-semibold">
+                                        <div>Read More</div>
+                                        <div class=" w-4 h-[1.2rem]">
+                                            <svg aria-hidden="true" fill="currentColor" role="img" viewBox="0 0 20 21"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Arrow Right</title>
+                                                <polygon
+                                                    points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9">
+                                                </polygon>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="flex gap-6">
-                        <!-- {['Twitter', 'Facebook', 'Instagram', 'LinkedIn'].map((social) => ( -->
-                        <NuxtLink v-for="social in socialMedia" :key="social" to="#"
-                            class="text-gray-400 hover:text-white">
-                            {{ social }}
-                        </NuxtLink>
-                        <!-- ))} -->
+                    <div role="navigation" aria-label="List" class="flex-wrap justify-center flex">
+                        <a :href="`${siteBaseUrl}/teen?173f1eaa_page=2`" aria-label="Next Page"
+                            class="text-white bg-[#1f2e40] rounded-full justify-center w-12 h-12 p-4 flex mx-[10px] text-sm">
+                            <div>
+                                <svg width="100%" height="100%" viewBox="0 0 7 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.146447 0.146447C0.341709 -0.0488155 0.658291 -0.0488155 0.853553 0.146447L6.70711 6L0.853553 11.8536C0.658291 12.0488 0.341709 12.0488 0.146447 11.8536C-0.0488155 11.6583 -0.0488155 11.3417 0.146447 11.1464L5.29289 6L0.146447 0.853553C-0.0488155 0.658291 -0.0488155 0.341709 0.146447 0.146447Z"
+                                        fill="white"></path>
+                                </svg>
+                            </div>
+                        </a>
                     </div>
-                    <p class="text-gray-400 text-center">
-                        ©All Copyrights reserved 2024 by FUNNGRO
-                    </p>
+                </div>
+
+                <div class="margin-top margin-medium w-[10%]">
+                    <div class="button-container center">
+                        <a :href="`${siteBaseUrl}/blog`" class="font-semibold text-white bg-[#47c480] flex gap-4 rounded-[50px] justify-center items-center py-3 px-6 text-center">
+                            <div>Read More</div>
+                            <div class="w-4 h-[1.2rem]">
+                                <svg aria-hidden="true" fill="currentColor" role="img" viewBox="0 0 20 21"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>Arrow Right</title>
+                                    <polygon
+                                        points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9">
+                                    </polygon>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </UiSectionContainer>
+
     </div>
 </template>
 
@@ -1418,5 +1503,28 @@ input[type="checkbox"]:checked~.accordion-content {
 
 input[type="checkbox"]:checked+label .arrow {
     transform: rotate(90deg);
+}
+
+.fr {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    display: grid;
+}
+
+
+
+@media screen and (max-width: 991px) {
+    .fr {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .fr {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
