@@ -1,6 +1,8 @@
 <script setup lang="ts">
 type ScrollDir = "left" | "right";
 
+// TODO: Need to use Container something in hero and  2 3 section 
+
 const siteBaseUrl: string = 'https://www.funngro.com';
 
 const sliderRef = ref<HTMLDivElement | null>(null);
@@ -611,10 +613,9 @@ const blogs = [
 
 <template>
     <div class="min-h-screen text-white">
-        <!-- Hero Section -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <UiSectionContainer>
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div>
+                <div class="">
                     <h1 class="text-5xl font-bold mb-6">TEENLANCERS</h1>
                     <p class="text-xl text-gray-400 mb-8">
                         Real companies, real projects, real earnings and real money
@@ -639,14 +640,6 @@ const blogs = [
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="flex gap-4">
-                        <NuxtLink to="#" class="bg-black rounded-lg p-2 hover:opacity-90">
-                            <img src="/placeholder.png" alt="Play Store" :width="120" :height="40" />
-                        </NuxtLink>
-                        <NuxtLink to="#" class="bg-black rounded-lg p-2 hover:opacity-90">
-                            <img src="/placeholder.png" alt="App Store" :width="120" :height="40" />
-                        </NuxtLink>
-                    </div> -->
                 </div>
                 <div class="relative h-[400px]">
                     <img src="https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/63fe05934db7ce0d3580d0dd_Funngro.png"
@@ -656,55 +649,47 @@ const blogs = [
             " alt="Funngro App" class="image-full-width" />
                 </div>
             </div>
-        </section>
+        </UiSectionContainer>
 
-        <section class="section_global">
-            <div class="px-10">
-                <div class="w-full !mx-auto">
-                    <div class="py-32">
-                        <div
-                            class="home_stats-wrapper grid gap-4 bg-[url('https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638c7c3395fb43356a404b1a_stats-background.svg')] bg-center bg-cover rounded-[20px] grid-rows-auto grid-cols-4 auto-cols-fr justify-items-center mb-24 p-[3.125rem] px-[2.5%]">
-                            <div v-for="f in ffff" :key="f.label" class="gap-2.5 items-center flex">
-                                <div class="h-[4.375rem] w-[4.375rem]" v-html="f.svg" />
-                                <div>
-                                    <h2 class="mb-1.5 text-[1.875rem]">{{ f.numbers }}</h2>
-                                    <p>{{ f.label }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-12">
-                            <div class="text-center">
-                                <div class="mb-4">
-                                    <h2 class="text-[#d8e0e9]">Why work in your Teens?</h2>
-                                </div>
-                                <p class="text-[#dfdfdf] text-left">
-                                    Warren Buffet, Bill Gates, Steve Jobs, all started working in
-                                    their Teens, do you need a better reason?
-                                </p>
-                            </div>
-                        </div>
-                        <div class="grid gap-4 grid-rows-auto grid-cols-4 auto-cols-fr">
-                            <div v-for="(type, index) in trustCategories" :key="index"
-                                class="feature-box hover:bg-[#07ab67]"
-                                :style="{ color: type.color, borderColor: type.color }">
-                                <div
-                                    class="h-[50%] w-full z-[-2] opacity-10 absolute inset-auto top-[143px] left-0 overflow-hidden">
-                                    <svg viewBox="0 0 275 135" height="150%" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M6.388 0.564883C5.227 1.05488 3.314 2.67988 2.138 4.17488C0.0079999 6.88188 0 7.11889 0 66.7109C0 107.591 0.344 127.283 1.085 128.911C1.682 130.221 3.439 132.042 4.99 132.958C7.581 134.488 18.284 134.623 137.357 134.623C228.375 134.623 267.614 134.3 269.288 133.538C274.506 131.16 275 128.675 275 104.784C275 92.6669 274.57 81.6219 274.045 80.2399C273.519 78.8579 272.057 77.0529 270.795 76.2279C268.724 74.8739 16.952 1.08988 11 0.0928829C9.625 -0.137117 7.55 0.0748827 6.388 0.564883Z"
-                                            fill="currentColor"></path>
-                                    </svg>
-                                </div>
-                                <div class="w-[4.375rem] hover:text-current" v-html="type.svg" />
-                                <h3 class="!mt-5 !mb-3 !text-[1.375rem]">{{ type.name }}</h3>
-                                <p class="text-xl text-white">{{ type.text }}</p>
-                            </div>
-                        </div>
+        <UiSectionContainer>
+            <div
+                class="home_stats-wrapper grid gap-4 bg-[url('https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638c7c3395fb43356a404b1a_stats-background.svg')] bg-center bg-cover rounded-[20px] grid-rows-auto grid-cols-4 auto-cols-fr justify-items-center mb-24 p-[3.125rem] px-[2.5%]">
+                <div v-for="f in ffff" :key="f.label" class="gap-2.5 items-center flex">
+                    <div class="h-[4.375rem] w-[4.375rem]" v-html="f.svg" />
+                    <div>
+                        <h2 class="mb-1.5 text-[1.875rem]">{{ f.numbers }}</h2>
+                        <p>{{ f.label }}</p>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="mb-12">
+                <div class="text-center">
+                    <div class="mb-4">
+                        <h2 class="text-[#d8e0e9]">Why work in your Teens?</h2>
+                    </div>
+                    <p class="text-[#dfdfdf] text-left">
+                        Warren Buffet, Bill Gates, Steve Jobs, all started working in
+                        their Teens, do you need a better reason?
+                    </p>
+                </div>
+            </div>
+            <div class="grid gap-4 grid-rows-auto grid-cols-4 auto-cols-fr">
+                <div v-for="(type, index) in trustCategories" :key="index" class="feature-box hover:bg-[#07ab67]"
+                    :style="{ color: type.color, borderColor: type.color }">
+                    <div
+                        class="h-[50%] w-full z-[-2] opacity-10 absolute inset-auto top-[143px] left-0 overflow-hidden">
+                        <svg viewBox="0 0 275 135" height="150%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6.388 0.564883C5.227 1.05488 3.314 2.67988 2.138 4.17488C0.0079999 6.88188 0 7.11889 0 66.7109C0 107.591 0.344 127.283 1.085 128.911C1.682 130.221 3.439 132.042 4.99 132.958C7.581 134.488 18.284 134.623 137.357 134.623C228.375 134.623 267.614 134.3 269.288 133.538C274.506 131.16 275 128.675 275 104.784C275 92.6669 274.57 81.6219 274.045 80.2399C273.519 78.8579 272.057 77.0529 270.795 76.2279C268.724 74.8739 16.952 1.08988 11 0.0928829C9.625 -0.137117 7.55 0.0748827 6.388 0.564883Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <div class="w-[4.375rem] hover:text-current" v-html="type.svg" />
+                    <h3 class="!mt-5 !mb-3 !text-[1.375rem]">{{ type.name }}</h3>
+                    <p class="text-xl text-white">{{ type.text }}</p>
+                </div>
+            </div>
+        </UiSectionContainer>
 
         <UiSectionContainer class="bg-[#1f2e40]">
             <div class="grid gap-4 grid-cols-[repeat(5,1fr)] auto-cols-fr max-lg:grid-cols-3 max-xs:grid-cols-2">
@@ -1045,7 +1030,7 @@ const blogs = [
         </UiSectionContainerWithHeader>
 
 
-        <UiSectionContainer>
+        <UiSectionContainer id="about">
             <div class="flex max-lg:flex-col gap-10">
                 <div class="basis-1/2">
                     <img src="https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/638de81514dc6e31e2578d60_about-funngro.png"
@@ -1214,7 +1199,8 @@ const blogs = [
 
                 <div class="margin-top margin-medium w-[10%]">
                     <div class="button-container center">
-                        <a :href="`${siteBaseUrl}/blog`" class="font-semibold text-white bg-[#47c480] flex gap-4 rounded-[50px] justify-center items-center py-3 px-6 text-center">
+                        <a :href="`${siteBaseUrl}/blog`"
+                            class="font-semibold text-white bg-[#47c480] flex gap-4 rounded-[50px] justify-center items-center py-3 px-6 text-center">
                             <div>Read More</div>
                             <div class="w-4 h-[1.2rem]">
                                 <svg aria-hidden="true" fill="currentColor" role="img" viewBox="0 0 20 21"
