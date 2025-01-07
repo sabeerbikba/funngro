@@ -213,3 +213,86 @@ const socialMediaLinks: SocialMediaLinks[] = [
         </footer>
     </div>
 </template>
+
+<style>
+h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+@media screen and (max-width: 767px) {
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 32px;
+    line-height: 36px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+@media screen and (max-width: 767px) {
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+img {
+    max-width: 100%;
+    display: inline-block;
+}
+
+img {
+    vertical-align: middle;
+    max-width: 100%;
+    display: inline-block;
+}
+
+img {
+    border: 0;
+}
+</style>

@@ -61,7 +61,7 @@ onMounted(() => {
 </template> -->
 
 
-<!-- <template>
+<template>
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden">
         <div class="relative overflow-hidden rounded-lg">
             <div class="flex transition-transform duration-500 ease-in-out"
@@ -139,8 +139,8 @@ const setCurrentSlide = (index: number) => {
     currentSlide.value = index;
 };
 </script>
- -->
 
+<!-- 
 <template>
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden">
         <div class="relative overflow-hidden rounded-lg">
@@ -239,7 +239,7 @@ onUnmounted(() => {
     stopAutoScroll();
 });
 
-</script>
+</script> -->
 
 <!-- <template>
     <div>
