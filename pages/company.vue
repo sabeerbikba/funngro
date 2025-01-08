@@ -112,6 +112,61 @@ const funngroMembers = [{
 
         <TrustedPartners />
 
-        
+        <UiSectionContainerWithHeader class="bg-[#1f2e40]" heading="Why work with Teens"
+            text="Teenagers are the smarter generations, more clued in to your customer mindset, not spoilt by years of experience hence being cost effective delivery of high quality of work. ">
+            <div class="flex gap-8 max-xs:flex-col ">
+                <img src="https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/63b47527e1b2e804dea4f3d9_OBJECTS.svg"
+                    loading="lazy" alt="Working with team illustration" class="w-full xs:w-1/2">
+                <div>
+                    <div class="mb-8 max-lg:mb-6 max-md:mb-5">
+                        <div class="mb-2">
+                            <h3 class="my-0 text-[2rem] font-semibold leading-[1.2] max-md:text-xl">
+                                Innovation
+                            </h3>
+                        </div>
+                        <p class="text-[#dfdfdf] text-left">No longer worry about using the same old ideas. Get
+                            innovative thinking, processes and style of working. Helps companies grow
+                            rapidly with timely project delivery.</p>
+                    </div>
+                    <div class="mb-8 max-lg:mb-6 max-md:mb-5">
+                        <div class="mb-2">
+                            <h3 class="my-0 text-[2rem] font-semibold leading-[1.2] max-md:text-xl">
+                                Cost effective
+                            </h3>
+                        </div>
+                        <p class="text-[#dfdfdf] text-left">Get your work done significantly lower cost, save as much
+                            as 50% on cost .<br><br>* Help the next generation the way someone helped you
+                        </p>
+                    </div>
+                    <div class="justify-start items-center flex" style="grid-column-gap: 1rem; grid-row-gap: 1rem;">
+                        <a href="https://teenlancer.funngro.com/pages/register/" target="_blank"
+                            class="text-white text-center bg-[#47c480] rounded-[50px] py-3 px-6 font-semiboldx flex gap-4 flex-row justify-center items-center w-full">
+                            <div>Start Now</div>
+                            <div class="flex-none w-4 h-[1.2rem]">
+                                <svg aria-hidden="true" fill="currentColor" role="img" viewBox="0 0 20 21"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>Arrow Right</title>
+                                    <polygon
+                                        points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9">
+                                    </polygon>
+                                </svg>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/918828410412" target="_blank"
+                            class="text-white text-center bg-transparent rounded-[50px] py-3 px-6 font-semiboldx border-2 border-white border-b-[.125rem] w-full inline-block">
+                            <div>Talk to us</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </UiSectionContainerWithHeader>
+
+        <WorkedInAndSteps />
+
+        <FrequentlyAskedQuestions />
+
+        <About />
+
+        <FunBlogs />
     </div>
 </template>

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { NuxtLink } from '#components';
-
-const route = useRoute();
-const showFooter: ComputedRef<boolean> = computed(() => route.path === '/');
+const { showFooter, routePath } = useRouteHelpers();
 
 type DownloadAppLink = {
     link: string,
@@ -22,7 +20,7 @@ type SocialMediaLinks = {
     svgIcon: string,
 };
 
-const siteBaseUrl: string = 'https://www.funngro.com';
+const siteBaseUrl = useRuntimeConfig().public.siteBaseUrl;
 
 const downloadAppLinks: DownloadAppLink[] = [
     {
@@ -142,7 +140,7 @@ const socialMediaLinks: SocialMediaLinks[] = [
                     <div class="hidden md:block">
                         <div class="flex items-center space-x-8">
                             <NuxtLink v-for="link in ['/teen', '/company', '/parent']" :key="link" :to="link"
-                                :class="['text-[#d8e0e9] px-3 py-2', link === route.path && '!text-[#47c480]']">
+                                :class="['text-[#d8e0e9] px-3 py-2', link === routePath && '!text-[#47c480]']">
                                 {{ link.replace(/^\//, '').replace(/^\w/, (c) => c.toUpperCase()) }}
                             </NuxtLink>
                             <div class="gap-x-4 gap-y-4 items-center flex">

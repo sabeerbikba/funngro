@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       flex: {
-        none: "none", // This sets flex: none;
+        none: "none",
       },
     },
     screens: {

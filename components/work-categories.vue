@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const route = useRoute();
-const isTeenPage = computed(() => route.path === '/teen');
+const { isTeenPage } = useRouteHelpers();
 
 // TODO: Is id really needed
 
