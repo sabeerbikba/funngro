@@ -4,3 +4,4 @@
 * check all vertical scroll 
 * remove unused code 
 * re-check styles tag inside code 
+* not need to render comments 

@@ -60,7 +60,7 @@ onMounted(() => {
     </div>
 </template> -->
 
-
+<!-- 
 <template>
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden">
         <div class="relative overflow-hidden rounded-lg">
@@ -138,7 +138,7 @@ const nextSlide = () => {
 const setCurrentSlide = (index: number) => {
     currentSlide.value = index;
 };
-</script>
+</script> -->
 
 <!-- 
 <template>
@@ -307,3 +307,7 @@ const accordionItems = ref([
     }
 ]);
 </script> -->
+
+<template>
+    ss
+</template>

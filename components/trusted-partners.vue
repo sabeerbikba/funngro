@@ -112,7 +112,7 @@ const partners = [{
                 </div>
                 <div class="gap-10 flex flex-col items-center pt-10 pb-10">
                     <img v-for="(logo, i) in partner.images" :key="i" :src="logo.src" :alt="logo.alt || 'Partner logo'"
-                        class="max-h-10" loading="lazy" :sizes="logo.sizes || undefined"
+                        class="max-h-10 max-w-[80%]" loading="lazy" :sizes="logo.sizes || undefined"
                         :srcset="logo.srcset || undefined" />
                 </div>
             </div>

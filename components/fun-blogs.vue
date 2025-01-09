@@ -24,7 +24,7 @@ const blogs = [{
         <div class="flex">
             <UiSectionHeader class="w-[20%] -top" heading="Fun blogs"
                 text="An investment in knowledge pays the best interest, read on." />
-            <div class="w-dyn-list w-[70%] ml-40">
+            <div class="w-dyn-list w-[70%]">
                 <div role="list" class="fr ">
                     <div v-for="(blog, index) in blogs" :key="index" role="listitem">
                         <a :href="`${siteBaseUrl}}/blog/${blog.link}`"
@@ -67,8 +67,7 @@ const blogs = [{
                     </a>
                 </div>
             </div>
-
-            <div class="margin-top margin-medium w-[10%]">
+            <div class="margin-top margin-medium w-[10%] min-w-24">
                 <div class="button-container center">
                     <a :href="`${siteBaseUrl}/blog`"
                         class="font-semibold text-white bg-[#47c480] flex gap-4 rounded-[50px] justify-center items-center py-3 px-6 text-center">
