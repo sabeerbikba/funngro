@@ -7,4 +7,3 @@
     </div>
     </div>
 </template>
-<!-- :aria-label="`${index + 1} of ${funngroMembers.length}`" -->

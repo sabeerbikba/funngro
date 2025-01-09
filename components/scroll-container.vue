@@ -6,14 +6,9 @@ const props = defineProps<{
 }>();
 
 const objectVal = ref([...props.object]);
-
-
-
 const currentSlideFunngroMembers = ref(0);
 
 const funngroMemberPreviousSlide = () => {
-    console.log('click 1');
-
     currentSlideFunngroMembers.value =
         currentSlideFunngroMembers.value === 0
             ? Math.ceil(objectVal.value.length / 2) - 1
@@ -21,8 +16,6 @@ const funngroMemberPreviousSlide = () => {
 };
 
 const funngroMemberNextSlide = () => {
-    console.log('click ');
-
     currentSlideFunngroMembers.value =
         currentSlideFunngroMembers.value === Math.ceil(objectVal.value.length / 2) - 1
             ? 0

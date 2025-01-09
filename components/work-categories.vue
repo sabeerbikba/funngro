@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const { isTeenPage } = useRouteHelpers();
 
-// TODO: Is id really needed
-
 type AreaOfInterests = {
     label: string;
     text: string;
@@ -125,8 +123,8 @@ const areaOfInterests: AreaOfInterests[] = [{
 
 <template>
     <UiSectionContainer class="bg-[#1f2e40]">
-<!--     <div class="interests-grid-xxx"> -->
-            <div class="grid gap-4 grid-cols-[repeat(5,1fr)] auto-cols-fr max-lg:grid-cols-3 max-xs:grid-cols-2"
+        <!--     <div class="interests-grid-xxx"> -->
+        <div class="grid gap-4 grid-cols-[repeat(5,1fr)] auto-cols-fr max-lg:grid-cols-3 max-xs:grid-cols-2"
             style="grid-template-columns: 1fr 1fr;">
             <div v-for="interest in areaOfInterests" :key="interest.label" :id="interest.id ? interest.id : undefined"
                 :class="[
@@ -139,7 +137,7 @@ const areaOfInterests: AreaOfInterests[] = [{
                         <div class="w-[4.375rem]" v-html="interest.svg" />
                         <p>{{ interest.label }}</p>
                     </div>
-                    <div :class="['interest-back card-back', !isTeenPage && 'flex-col gap-4']">
+                    <div :class="['interest-back card-back', !isTeenPage ? 'flex-col gap-4' : '']">
                         <p>{{ interest.text }}</p>
                         <a v-if="!isTeenPage" :href="interest.sampleProjectLink" target="_blank"
                             class="font-semibold">Sample projects →</a>

@@ -46,7 +46,7 @@ const scroll = (direction: ScrollDir) => {
 const funngroMembersstartAutoScroll = () => {
     autoScrollInterval4FunngroMembers = setInterval(() => {
         nextSlide();
-    }, 3000); // Change slide every 3 seconds
+    }, 3000);
 };
 
 const funngroMembersstopAutoScroll = () => {
@@ -55,21 +55,14 @@ const funngroMembersstopAutoScroll = () => {
 
 onMounted(() => {
     funngroMembersstartAutoScroll();
-});
-
-onUnmounted(() => {
-    funngroMembersstopAutoScroll();
-});
-
-
-
-onMounted(() => {
     if (sliderRef.value) {
         sliderRef.value.style.transform = `translateX(${scrollPosition.value}px)`;
     }
 });
 
-
+onUnmounted(() => {
+    funngroMembersstopAutoScroll();
+});
 
 const slides = [{
     link: "https://businessnewsweek.in/business/teens-mean-business-funngro-offers-real-world-work-experience-to-teenagers-through-its-revolutionary-platform/",
@@ -192,9 +185,6 @@ const earningSteps = [{
     h3: "Start Earning",
     p: "Complete the project - earn money and get certificate",
 }];
-
-
-
 </script>
 
 <template>
@@ -205,9 +195,7 @@ const earningSteps = [{
             'text-left bg-transparent h-auto pb-20 relative overflow-hidden',
             'text-center clear-both tap-highlight-color-transparent h-[300px] relative'
         )
-            " data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false"
-            data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true" role="region"
-            aria-label="carousel">
+            " role="region" aria-label="carousel">
             <div ref="sliderRef" class="flex transition-transform duration-[3000] ease-in-out gap-10" :style="{
                 transform: `translateX(${scrollPosition}px)`,
                 width: `${visibleWidth * 2}px`,
@@ -216,25 +204,22 @@ const earningSteps = [{
                     'text-left bg-transparent h-auto pb-20 relative overflow-hidden',
                     'text-center clear-both tap-highlight-color-transparent h-[300px] !w-[135px] relative'
                 )
-                    " :aria-label="`${index + 1} of ${slides.length}`" role="group" aria-hidden="true"
+                    " :aria-label="`${index + 1} of ${slides.length}`" role="group"
                     style="transition: all; opacity: 1">
                     <a :href="slide.link" target="_blank" class="!w-full inline-block max-lg:max-w-24 max-w-[7.5rem]"
-                        tabindex="-1" aria-hidden="true">
+                        tabindex="-1">
                         <img :src="slide.imgSrc" :alt="slide.imgAlt" :sizes="slide.imgSizes" :srcset="slide.imgSrcSet"
-                            class="!w-full" loading="lazy" aria-hidden="true" />
+                            class="!w-full" loading="lazy"/>
                     </a>
                 </div>
             </div>
-            <div v-for="(button, index) in [
-                {
-                    direction: 'left',
-                    img: 'https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/6390183d71afe76c7e7bc767_Vector%2058.svg',
-                },
-                {
-                    direction: 'left',
-                    img: 'https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/6390183d1279b312ac061558_Vector%2057.svg',
-                },
-            ]" @click="scroll(button.direction as ScrollDir)"
+            <div v-for="(button, index) in [{
+                direction: 'left',
+                img: 'https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/6390183d71afe76c7e7bc767_Vector%2058.svg',
+            }, {
+                direction: 'right',
+                img: 'https://cdn.prod.website-files.com/638b48215fd2fd34538fa6bc/6390183d1279b312ac061558_Vector%2057.svg',
+            }]" @click="scroll(button.direction as ScrollDir)"
                 class="z-3 flex justify-center items-center w-[80px] h-[2rem] mx-auto absolute left-[-3rem] cursor-pointer text-white tap-highlight-color-transparent select-none text-[40px] inset-0"
                 role="button" tabindex="0" aria-controls="w-slider-mask-0"
                 :aria-label="`${index == 0 ? 'previous' : 'next'} slide`"

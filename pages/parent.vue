@@ -1,5 +1,4 @@
 <script setup>
-import { ChevronDown, Download, Users, Briefcase, GraduationCap, Trophy, ArrowRight } from 'lucide-vue';
 const stats = [
     { number: '3,500+', label: 'Active Teenlancers' },
     { number: '12', label: 'Categories' },
@@ -7,28 +6,23 @@ const stats = [
     { number: '1000+', label: 'Live Projects' },
 ];
 
-const reasonsToWork = [
-    {
-        icon: 'Users',
-        title: 'Early Career',
-        description: 'Early understanding of the professional world',
-    },
-    {
-        icon: 'Briefcase',
-        title: 'Financial Independence',
-        description: 'Learn to manage finances early',
-    },
-    {
-        icon: 'GraduationCap',
-        title: 'Learning Experience',
-        description: 'Practical learning beyond textbooks',
-    },
-    {
-        icon: 'Trophy',
-        title: 'Build Portfolio',
-        description: 'Create impressive work portfolio',
-    },
-]
+const reasonsToWork = [{
+    icon: 'Users',
+    title: 'Early Career',
+    description: 'Early understanding of the professional world',
+}, {
+    icon: 'Briefcase',
+    title: 'Financial Independence',
+    description: 'Learn to manage finances early',
+}, {
+    icon: 'GraduationCap',
+    title: 'Learning Experience',
+    description: 'Practical learning beyond textbooks',
+}, {
+    icon: 'Trophy',
+    title: 'Build Portfolio',
+    description: 'Create impressive work portfolio',
+}];
 
 const categories = [
     'Digital Marketing',
@@ -43,14 +37,6 @@ const categories = [
     'Video Editing',
     'Writing',
     'Testing',
-];
-
-const earningSteps = ['Register', 'Complete Profile', 'Find Project', 'Complete Work', 'Get Paid'];
-
-const faqs = [
-    'Why should teens work?',
-    'Is it safe for teens to work remotely?',
-    'What are the earning opportunities?',
 ];
 
 const socialLinks = ['Twitter', 'Facebook', 'Instagram', 'LinkedIn'];
@@ -129,7 +115,7 @@ const socialLinks = ['Twitter', 'Facebook', 'Instagram', 'LinkedIn'];
                     <div class="w-10 h-10 bg-emerald-500/20 rounded-lg mx-auto mb-3 flex items-center justify-center">
                         <!-- <Download class="w-5 h-5 text-emerald-500" color="currentColor" /> -->
                         <!-- <Download class="text-emerald-500" size="24" stroke-width="2" -->
-                            <!-- color="currentColor" /> -->
+                        <!-- color="currentColor" /> -->
                     </div>
                     <div class="text-sm">{{ category }}</div>
                 </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps({ renderBtn: { type: Boolean, required: false, default: false } });
-// TODO:
+
 const stats = [{
     label: "Companies",
     numbers: "3,500+",
