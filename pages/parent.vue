@@ -1,4 +1,27 @@
-<script setup>
+<script setup lang="ts">
+type MetaTags = {
+    title: string,
+    content: string,
+};
+
+const metaTags: MetaTags = {
+    title: 'Funngro Teenlancer – Parent assisted experiential learning for Teens',
+    content: 'Experiential learning, Certificates, Financial learning, Financial independence. Learning on the job while understanding value of money by earning real income.'
+};
+
+useHead({
+    title: metaTags.title,
+    meta: [
+        { name: "description", content: metaTags.content },
+        { property: "og:title", content: metaTags.title, },
+        { property: "og:description", content: metaTags.content, },
+        { property: "twitter:title", content: metaTags.title, },
+        { property: "twitter:description", content: metaTags.content, },
+        { property: "og:type", content: "website", },
+        { name: "twitter:card", content: "summary_large_image", }
+    ]
+});
+
 const stats = [
     { number: '3,500+', label: 'Active Teenlancers' },
     { number: '12', label: 'Categories' },

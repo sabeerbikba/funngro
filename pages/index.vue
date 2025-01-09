@@ -1,3 +1,28 @@
+<script setup lang="ts">
+type MetaTags = {
+    title: string,
+    content: string,
+};
+
+const metaTags: MetaTags = {
+    title: 'Funngro Teenlancer - Smart Teens work with Smart companies.',
+    content: 'Teens work with companies on real project and earn first income. Freelancing for Teens - Teenlancers. Experience certificate, Paid projects, Learning while earning'
+};
+
+useHead({
+    title: metaTags.title,
+    meta: [
+        { name: "description", content: metaTags.content },
+        { property: "og:title", content: metaTags.title, },
+        { property: "og:description", content: metaTags.content, },
+        { property: "twitter:title", content: metaTags.title, },
+        { property: "twitter:description", content: metaTags.content, },
+        { property: "og:type", content: "website", },
+        { name: "twitter:card", content: "summary_large_image", }
+    ]
+});
+</script>
+
 <template>
     <div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">

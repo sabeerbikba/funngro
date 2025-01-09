@@ -1,4 +1,9 @@
 <script setup lang="ts">
+type MetaTags = {
+    title: string,
+    content: string,
+};
+
 type DownloadAppLink = {
     link: string,
     svgIcon: string,
@@ -6,6 +11,23 @@ type DownloadAppLink = {
     imgAlt: string,
 };
 
+const metaTags: MetaTags = {
+    title: 'Funngro Teenlancer – Earn your first income',
+    content: 'Funngro – First income, Experiential learning, financial independence & prepaid card'
+};
+
+useHead({
+    title: metaTags.title,
+    meta: [
+        { name: "description", content: metaTags.content },
+        { property: "og:title", content: metaTags.title, },
+        { property: "og:description", content: metaTags.content, },
+        { property: "twitter:title", content: metaTags.title, },
+        { property: "twitter:description", content: metaTags.content, },
+        { property: "og:type", content: "website", },
+        { name: "twitter:card", content: "summary_large_image", }
+    ]
+});
 
 const downloadAppLinks = useState<DownloadAppLink[]>('downloadAppLinks');
 

@@ -1,4 +1,27 @@
 <script setup lang="ts">
+type MetaTags = {
+    title: string,
+    content: string,
+};
+
+const metaTags: MetaTags = {
+    title: 'Smart Companies find Smart Talent – Funngro Teenlancer',
+    content: 'Freelance talented Teenagers. Smart Talent solution, Social media marketing, influencer, research, survey, website development, app development, sales and business development,'
+};
+
+useHead({
+    title: metaTags.title,
+    meta: [
+        { name: "description", content: metaTags.content, },
+        { property: "og:title", content: metaTags.title, },
+        { property: "og:description", content: metaTags.content, },
+        { property: "twitter:title", content: metaTags.title, },
+        { property: "twitter:description", content: metaTags.content, },
+        { property: "og:type", content: "website", },
+        { name: "twitter:card", content: "summary_large_image", }
+    ]
+});
+
 const projectIdeas = [{
     work: "Build your brand",
     price: "₹2000",
